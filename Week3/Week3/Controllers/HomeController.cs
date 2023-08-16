@@ -20,10 +20,10 @@ namespace Week3.Controllers
             //ViewBag.Message = "Your application description page.";
 
             Hello hello = new Hello();
-            //ViewBag.Message = hello.getHello();
+            ViewBag.Message = hello.getHello();
 
-            Student student = new Student("test", "023232");
-            ViewBag.Message = student.Example();
+            //Student student = new Student("test", "023232");
+            //student.Example();
 
             return View();
         }
