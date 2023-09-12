@@ -1,0 +1,46 @@
+﻿@model MHealth.Models.DTO.LoginModel
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row mt-3">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <form asp-action="Login" method="post">
+        <div class="card">
+            <div class="card-header">
+                <p class="subtitle">Login</p>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <label asp-for="Username">Username</label>
+                    <input type="text" class="form-control" asp-for="Username" placeholder="Username">
+                    <span asp-validation-for="Username" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password">Password</label>
+                    <input type="password" class="form-control" asp-for="Password" placeholder="Password">
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                    
+                    <span>Don't have an account?<a href="/User/Signup" style="text-decoration:none">SignUp</a></span>
+
+                @if (TempData["msg"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["msg"]
+                    </div>
+                }
+            </div>
+            <div class="card-footer">
+                
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </div>
+        </form>
+    </div>
+
+</div>
+
