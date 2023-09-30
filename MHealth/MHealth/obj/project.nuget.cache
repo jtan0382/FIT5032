@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "riQUqEyKV935sOnq7+a6IlnO5Tntz6zzl0FI5tQlKvBC+OSYqdNuZPpBuOBva3Yy+bbV3ykpZXZCso5huElKpQ==",
+  "dgSpecHash": "TYc6B5UGV9vmSrYl/ipt3sHG5rKMp065HGc7YhbjFOiyxSf5BzYhkCNPP7P6nQ6XQgQXXthr+7OxKklpTu+gfg==",
   "success": true,
   "projectFilePath": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\MHealth.csproj",
   "expectedPackageFiles": [
@@ -59,6 +59,7 @@
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\messagepack.annotations\\2.1.152\\messagepack.annotations.2.1.152.nupkg.sha512",
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\messagepackanalyzer\\2.1.152\\messagepackanalyzer.2.1.152.nupkg.sha512",
+    "C:\\Users\\Jehezkiel\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\6.0.22\\microsoft.aspnetcore.authentication.google.6.0.22.nupkg.sha512",
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\6.0.21\\microsoft.aspnetcore.cryptography.internal.6.0.21.nupkg.sha512",
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\6.0.21\\microsoft.aspnetcore.cryptography.keyderivation.6.0.21.nupkg.sha512",
     "C:\\Users\\Jehezkiel\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\6.0.21\\microsoft.aspnetcore.identity.entityframeworkcore.6.0.21.nupkg.sha512",

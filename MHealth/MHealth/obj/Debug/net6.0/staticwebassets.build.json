@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Axnidpy30kNoj/IDYpqTwGtplOVIZp5I7vqwSUVd82w=",
+  "Hash": "cmT8qnacaDDGR5/jId4gmrFBxxnuBcTrU8BudbpXXBo=",
   "Source": "MHealth",
   "BasePath": "_content/MHealth",
   "Mode": "Default",
@@ -49,6 +49,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\MHealth.bundle.scp.css"
+    },
+    {
+      "Identity": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\wwwroot\\css\\adminstyle.css",
+      "SourceId": "MHealth",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\wwwroot\\",
+      "BasePath": "_content/MHealth",
+      "RelativePath": "css/adminstyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\adminstyle.css"
     },
     {
       "Identity": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\wwwroot\\css\\site.css",

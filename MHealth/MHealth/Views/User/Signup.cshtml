@@ -38,12 +38,12 @@
                         <input type="password" class="form-control" asp-for="PasswordConfirm" placeholder="Password Confirm">
                         <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
                     </div>
-                    @if (TempData["msg"] != null)
+                    @*@if (TempData["msg"] != null)
                     {
                     <div class="alert alert-danger" role="alert">
                         @TempData["msg"]
                     </div>
-                    }
+                    }*@
                 </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">SignUp</button>

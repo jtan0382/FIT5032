@@ -6,6 +6,8 @@ namespace MHealth.Repositories.Abstract
     {
         Task<Status> LoginAsync(LoginModel model);
         Task<Status> RegistrationAsync(SignupModel model);
+
+        Task<Status> GoogleCallback(string returnUrl, string remoteError);
         Task LogoutAsync();
     }
 }

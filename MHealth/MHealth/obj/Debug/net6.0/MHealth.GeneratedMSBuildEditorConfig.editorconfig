@@ -16,8 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = D:\Kuliah\S2\Monash\Monash University (Master of Information Technology)\Semester 2\FIT5032\Portfolio\MHealth\MHealth
 build_property._RazorSourceGeneratorDebug = 
 
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Admin/CreateStaff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQ3JlYXRlU3RhZmYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Admin/EditUser.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRWRpdFVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Admin/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Booking/Booking.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xCb29raW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Booking/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9va2luZ1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Home/Index.cshtml]
@@ -26,6 +42,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Home/Staff.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxTdGFmZi5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Shared/Error.cshtml]
@@ -38,6 +58,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/Staff/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU3RhZmZcSW5kZXguY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [D:/Kuliah/S2/Monash/Monash University (Master of Information Technology)/Semester 2/FIT5032/Portfolio/MHealth/MHealth/Views/User/Login.cshtml]

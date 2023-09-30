@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\MHealth.bundle.scp.css"
     },
     {
+      "Id": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\wwwroot\\css\\adminstyle.css",
+      "PackagePath": "staticwebassets\\css\\adminstyle.css"
+    },
+    {
       "Id": "D:\\Kuliah\\S2\\Monash\\Monash University (Master of Information Technology)\\Semester 2\\FIT5032\\Portfolio\\MHealth\\MHealth\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
