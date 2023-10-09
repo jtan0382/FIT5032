@@ -1,0 +1,17 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Week10API
+build_property.RootNamespace = Week10API
+build_property.ProjectDir = D:\Kuliah\S2\Monash\Monash University (Master of Information Technology)\Semester 2\FIT5032\FIT5032\Week10API\Week10API\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Kuliah\S2\Monash\Monash University (Master of Information Technology)\Semester 2\FIT5032\FIT5032\Week10API\Week10API
+build_property._RazorSourceGeneratorDebug = 
