@@ -1,6 +1,8 @@
 ﻿using MHealth.Models;
 using MHealth.Models.Domain;
+using MHealth.Models.Domain.View;
 using MHealth.Repositories.Abstract;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -12,10 +14,10 @@ namespace MHealth.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly IUserRepository _userRepository;
 
-        public HomeController(ILogger<HomeController> logger, IUserRepository userRepository)
+        public HomeController(ILogger<HomeController> _logger, IUserRepository _userRepository)
         {
-            _logger = logger;
-            _userRepository = userRepository;
+            this._logger = _logger;
+            this._userRepository = _userRepository;
         }
 
         public IActionResult Index()

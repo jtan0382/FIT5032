@@ -22,7 +22,7 @@ namespace MHealth.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("MHealth.Models.Domain.BookingModel", b =>
+            modelBuilder.Entity("MHealth.Models.DTO.BookingModel", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -46,6 +46,63 @@ namespace MHealth.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("MHealth.Models.DTO.MRIPostModel", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StaffId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("BookingId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("PostDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("PostPath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id", "UserId", "StaffId");
+
+                    b.HasIndex("BookingId", "UserId", "StaffId")
+                        .IsUnique();
+
+                    b.ToTable("MRIPosts");
+                });
+
+            modelBuilder.Entity("MHealth.Models.DTO.RatingModel", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("StaffId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id", "UserId", "StaffId");
+
+                    b.HasIndex("StaffId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("MHealth.Models.Domain.UserModel", b =>
@@ -250,7 +307,31 @@ namespace MHealth.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("MHealth.Models.Domain.BookingModel", b =>
+            modelBuilder.Entity("MHealth.Models.DTO.BookingModel", b =>
+                {
+                    b.HasOne("MHealth.Models.Domain.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("StaffId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("MHealth.Models.Domain.UserModel", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MHealth.Models.DTO.MRIPostModel", b =>
+                {
+                    b.HasOne("MHealth.Models.DTO.BookingModel", null)
+                        .WithOne()
+                        .HasForeignKey("MHealth.Models.DTO.MRIPostModel", "BookingId", "UserId", "StaffId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MHealth.Models.DTO.RatingModel", b =>
                 {
                     b.HasOne("MHealth.Models.Domain.UserModel", null)
                         .WithMany()

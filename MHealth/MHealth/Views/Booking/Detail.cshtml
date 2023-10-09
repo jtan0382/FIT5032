@@ -1,0 +1,46 @@
+﻿@model MHealth.Models.Domain.View.MRIViewModel;
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<div id="rating" class="form-group">
+    @for (int i = 1; i <= 5; i++)
+    {
+        <span class="star" data-value="@i">&#9733;</span>
+    }
+</div>*@
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <h5>Staff: @Model.StaffName</h5>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                @if (TempData["error"] != "1")
+                {
+                    <h5>@Model.Status</h5>
+                    @if (Model.Status == 0)
+                    {
+
+                        <p>The staff has not given your result!</p>
+                    }
+                    else if (Model.Status == 1)
+                    {
+                        <h5>Your Result: </h5>
+                        <hr style="border: 1px solid black">
+                        @Model.Description
+                        <img src="@Model.PostPath"/>
+                        <p>D:\Kuliah\S2\Monash\Monash University (Master of Information Technology)\Semester 2\FIT5032\Portfolio\MHealth\MHealth\Upload\Files\</p>
+                        <p>Path: @Model.PostPath</p>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

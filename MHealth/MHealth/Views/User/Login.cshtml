@@ -47,14 +47,28 @@
                 @*<button type="submit" class="btn btn-success">Google</button>*@
                 <form method="post" asp-action="GoogleLogin" asp-route-returnUrl="@Model.ReturnUrl">
                     <div>
-                        @foreach (var provider in Model.ExternalLogins)
+                        @if (Model.ExternalLogins != null)
+                        {
+
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" style="width:auto"
+                                name="provider" value="@provider.Name"
+                                title="Login using your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        }
+                        else
                         {
                             <button type="submit" class="btn btn-primary" style="width:auto"
-                                    name="provider" value="@provider.Name"
-                                    title="Login using your @provider.DisplayName account">
-                                @provider.DisplayName
+                                    name="provider" value="Google"
+                                    title="Login using your Google account">
+                                Google
                             </button>
                         }
+                       
+
                     </div>
                 </form>
                 @*<a class="btn btn-success" asp-action="GoogleLogin">Google</a>*@

@@ -5,11 +5,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
     string[] TableHeaders = new string[]
     {
-    "UserId",
+    "UserName",
+    //"StaffName",
     "BookingTime",
     "Actions"
     };
 }
+
 @if (TempData["error"] == "1")
 {
     <p>No Data Exist!</p>
@@ -36,14 +38,17 @@ else
                     {
                         <tr>
                             <td>@Data.UserName</td>
+                            @*<td>@Data.StaffName</td>*@
                             <td>@Data.BookingTime</td>
                             <td>
 
                                 <div class="btn-group btn-group-md">
-                                    <form asp-controller="Admin" asp-action="DeleteUser" method="post" asp-route-id="@Data.Id">
-
-                                        <a class="btn btn-success mx-2" asp-controller="Admin" asp-action="EditUser" asp-route-id="@Data.Id">Edit</a>
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    @*<form asp-controller="Staff" asp-action="Detail" method="post" asp-route-id="@Data.Id">*@
+                                    <form asp-controller="Staff" asp-action="Detail" method="post">
+                                        <input type="hidden" name="BookingId" value="@Data.Id" />
+                                        <input type="hidden" name="UserId" value="@Data.UserId" />
+                                        <input type="hidden" name="StaffId" value="@Data.StaffId" />
+                                        <button type="submit" class="btn btn-success mx-2" >Detail</button>
                                     </form>
                                 </div>
 

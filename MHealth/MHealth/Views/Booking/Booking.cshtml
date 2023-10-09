@@ -1,7 +1,9 @@
-﻿@model MHealth.Models.Domain.BookingModel
+﻿@model MHealth.Models.DTO.BookingModel;
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Booking";
 }
+
+<h5>@ViewData["Title"]</h5>
 @*<p>@TempData["bookingId"]</p>
 <p>@TempData["userId"]</p>
 <p>@TempData["staffId"]</p>*@
@@ -10,11 +12,12 @@
         <form asp-action="CreateBooking" asp-controller="Booking" method="post" asp-route-id="@Model.StaffId">
             <div class="form-group">
                 <label asp-for="BookingTime">Booking Date: </label>
-                <input type="text" id="BookingTime" name="selectedDate" readonly="readonly"/>
+                <input type="text" id="selectedDate" name="selectedDate" readonly="readonly" />
                 <span asp-validation-for="BookingTime" class="text-danger"></span>
             </div>
             <button type="submit" class="btn btn-primary mt-3">Book</button>
-            <a asp-action="Staff" asp-asp-controller="Home" class="btn btn-success ml-3 mt-3">Back</a>
+            <a asp-action="Staff" asp-controller="Home" class="btn btn-success ml-3 mt-3">Back</a>
         </form>
     </div>
 </div>
+

@@ -1,7 +1,10 @@
 ﻿using MHealth.Models.Domain;
+using MHealth.Models.Domain.View;
 using MHealth.Models.DTO;
 using MHealth.Repositories.Abstract;
+using MHealth.Repositories.Implementation;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MHealth.Controllers
@@ -11,11 +14,37 @@ namespace MHealth.Controllers
     {
         private readonly ILogger<AdminController> _logger;
         private readonly IAdminRepository _adminRepository;
+        private readonly IEmailRepository _emailRepository;
+        private readonly IConfiguration _configuration;
 
-        public AdminController(ILogger<AdminController> _logger, IAdminRepository _adminRepository)
+
+        public AdminController(ILogger<AdminController> _logger, IAdminRepository _adminRepository, IEmailRepository _emailRepository, IConfiguration _configuration)
         {
             this._logger = _logger;
             this._adminRepository = _adminRepository;
+            this._emailRepository = _emailRepository;
+            this._configuration = _configuration;
+        }
+
+        public IActionResult Announcement()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Announce(AnnouncementModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(nameof(Announcement));
+            }
+            var users = await _adminRepository.GetAllUser();
+            foreach (var user in users)
+            {
+                await _emailRepository.SendEmail(_configuration["AdminEmail"], user.Email, model.Subject, model.Announcement);
+            }
+
+            return RedirectToAction(nameof(Index));
         }
 
         public async Task<IActionResult> Index(int currentPage = 1)
@@ -37,21 +66,50 @@ namespace MHealth.Controllers
             return View(userData);
         }
 
-        [HttpGet]
+        public async Task<IActionResult> Booking(int currentPage = 1)
+        {
+            try
+            {
+                var bookings = await _adminRepository.GetAllBooking();
+
+                var totalCount = bookings.Count();
+                int pageSize = 5;
+                var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+                List<BookingViewModel> bookingList = bookings.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+
+                BookingPaginationViewModel bookingData = new BookingPaginationViewModel()
+                {
+                    Bookings = bookingList,
+                    CurrentPage = currentPage,
+                    TotalPages = totalPages,
+                    PageSize = pageSize
+                };
+                return View(bookingData);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "1";
+            }
+            return View();
+        }
+
+
+
         public async Task<IActionResult> EditUser(string id)
         {
-
-            UserModel user = await _adminRepository.GetUserById(id);
-            if (user != null)
+            UserViewModel userViewModel = await _adminRepository.UserModelToUserViewModel(id);
+            //UserModel user = await _adminRepository.GetUserById(id);
+            //if (user != null)
+            if (userViewModel != null)
             {
-                return View(user); // Pass the user data to the view
+                return View(userViewModel); // Pass the user data to the view
             }
             //TempData["msg"] = $"User is not found with Id : {id}";
             return RedirectToAction(nameof(Index));
         }
 
         [HttpPost]
-        public async Task<IActionResult> EditUser(UserModel model)
+        public async Task<IActionResult> EditUser(UserViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -106,6 +164,40 @@ namespace MHealth.Controllers
 
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteBooking(string id)
+        {
+            try
+            {
+                BookingModel user = await _adminRepository.GetBookingById(id);
+
+                if (user != null)
+                {
+                    try
+                    {
+                        await _adminRepository.DeleteBooking(id);
+                        //return RedirectToAction(nameof(Index));
+
+                        //TempData["msg"] = "The user deleted successfully";
+                    }
+                    catch (Exception ex)
+                    {
+                        //TempData["msg"] = ex.Message;
+
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //TempData["msg"] = ex.Message;
+
+            }
+            TempData["msg"] = $"Booking is not found with Id : {id}";
+            return RedirectToAction(nameof(Booking));
+
+        }
+
         public IActionResult CreateStaff()
         {
             return View();
@@ -138,14 +230,17 @@ namespace MHealth.Controllers
     }
 }
 
-        //public async Task<IActionResult> SearchUser(string search)
-        //{
-        //    search = string.IsNullOrEmpty(search) ? "" : search.ToLower();
-        //    var userList = await _adminRepository.SearchUser(search, "user");
+//public async Task<IActionResult> SearchUser(string search)
+//{
+//    search = string.IsNullOrEmpty(search) ? "" : search.ToLower();
+//    var userList = await _adminRepository.SearchUser(search, "user");
 
-        //    return View(userData);
-        //}
+//    return View(userData);
+//}
 
 
 //    }
 //}
+
+
+

@@ -1,5 +1,8 @@
 ﻿using MHealth.Models.Domain;
+using MHealth.Models.Domain.View;
+using MHealth.Models.DTO;
 using MHealth.Repositories.Abstract;
+using MHealth.Repositories.Implementation;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,19 +12,43 @@ using System.Globalization;
 namespace MHealth.Controllers
 {
     [Authorize]
+    [Authorize(Roles = "user")]
     public class BookingController : Controller
     {
-        private readonly IBookingRepository _service;
+        private readonly IBookingRepository _bookingRepository;
         private readonly UserManager<UserModel> _userManager;
 
-        public BookingController(IBookingRepository service, UserManager<UserModel> userManager)
+        public BookingController(IBookingRepository _bookingRepository, UserManager<UserModel> _userManager)
         {
-            _service = service;
-            _userManager = userManager;
+            this._bookingRepository = _bookingRepository;
+            this._userManager = _userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(int currentPage = 1)
         {
+            var user = await _userManager.GetUserAsync(User);
+            try
+            {
+                var bookings = await _bookingRepository.GetAllBooking(user.Id);
+
+                var totalCount = bookings.Count();
+                int pageSize = 5;
+                var totalPages = (int)Math.Ceiling(totalCount / (double)pageSize);
+                List<BookingViewModel> bookingList = bookings.Skip((currentPage - 1) * pageSize).Take(pageSize).ToList();
+
+                BookingPaginationViewModel bookingData = new BookingPaginationViewModel()
+                {
+                    Bookings = bookingList,
+                    CurrentPage = currentPage,
+                    TotalPages = totalPages,
+                    PageSize = pageSize
+                };
+                return View(bookingData);
+            }
+            catch (Exception ex)
+            {
+                TempData["error"] = "1";
+            }
             return View();
         }
 
@@ -51,9 +78,9 @@ namespace MHealth.Controllers
                 try
                 {
 
-                    await _service.Booking(user.Id, id, bookingTime);
+                    await _bookingRepository.Booking(user.Id, id, bookingTime);
                     return RedirectToAction("Staff", "Home");
-                } 
+                }
                 catch (Exception ex)
                 {
                     return RedirectToAction("Booking", "Booking");
@@ -64,10 +91,18 @@ namespace MHealth.Controllers
                 return RedirectToAction("Booking", "Booking");
 
             }
-            //var result = await _service.Booking(user.Id, id, selectedDate.);
 
-            return RedirectToAction("Staff", "Home");
+        }
 
+        [HttpPost]
+        public async Task<IActionResult> Detail(string bookingId, string userId, string staffId)
+        {
+            MRIViewModel mri = await _bookingRepository.GetBookingInformation(bookingId, userId, staffId);
+            if(mri == null)
+            {
+                TempData["error"] = "1";
+            }
+            return View(mri);
         }
 
     }

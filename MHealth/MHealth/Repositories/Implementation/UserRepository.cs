@@ -2,6 +2,7 @@
 using MHealth.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace MHealth.Repositories.Implementation
 {

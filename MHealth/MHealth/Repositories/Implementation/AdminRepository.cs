@@ -1,4 +1,5 @@
 ﻿using MHealth.Models.Domain;
+using MHealth.Models.Domain.View;
 using MHealth.Models.DTO;
 using MHealth.Repositories.Abstract;
 using Microsoft.AspNetCore.Identity;
@@ -11,7 +12,6 @@ namespace MHealth.Repositories.Implementation
     {
         private readonly DatabaseContext _context;
         private readonly UserManager<UserModel> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         //private readonly RoleManager<IdentityRole> _roleManager;
 
 
@@ -47,8 +47,26 @@ namespace MHealth.Repositories.Implementation
                 await _userManager.CreateAsync(user, model.Password);
                 status.StatusCode = 1;
             }
-            
 
+
+            return status;
+        }
+
+        public async Task<Status> DeleteBooking(string id)
+        {
+            var status = new Status();
+
+            var booking = await _context.Bookings.FindAsync(id);
+            if (booking != null)
+            {
+                _context.Bookings.Remove(booking);
+                await _context.SaveChangesAsync();
+                status.StatusCode = 1;
+            }
+            else
+            {
+                status.StatusCode = 0;
+            }
             return status;
         }
 
@@ -68,6 +86,37 @@ namespace MHealth.Repositories.Implementation
                 status.StatusCode = 0;
             }
             return status;
+        }
+
+        public async Task<IEnumerable<BookingViewModel>> GetAllBooking()
+        {
+            var bookings = await _context.Bookings.ToListAsync();
+            var users = await _context.Users.ToListAsync();
+            var bookingList = new List<BookingViewModel>();
+
+            var userBooking =
+                            from booking in bookings
+                            join user in users on booking.UserId equals user.Id
+                            join staff in users on booking.StaffId equals staff.Id
+
+                            select new BookingViewModel
+                            {
+                                Id = booking.Id,
+                                UserId = user.Id,
+                                StaffId = booking.StaffId,
+                                UserName = user.UserName,
+                                StaffName = staff.UserName,
+                                BookingTime = booking.BookingTime,
+                                Status = booking.Status
+                            };
+
+            bookingList = userBooking
+                .Where(b => b.Status == 0)
+                .OrderBy(b => b.BookingTime)
+                .Cast<BookingViewModel>()
+                .ToList();
+
+            return bookingList;
         }
 
         public async Task<IEnumerable<UserModel>> GetAllUser()
@@ -93,6 +142,10 @@ namespace MHealth.Repositories.Implementation
 
         }
 
+        public async Task<BookingModel> GetBookingById(string id)
+        {
+            return await _context.Bookings.FindAsync(id);
+        }
 
         public async Task<UserModel> GetUserById(string id)
         {
@@ -138,25 +191,39 @@ namespace MHealth.Repositories.Implementation
 
         //        return nonAdminUsersList;
         //    }
-            
 
-            
+
+
         //}
 
-        public async Task<Status> UpdateUser(UserModel model)
+        public async Task<Status> UpdateUser(UserViewModel model)
         {
             Status status = new Status();
             var users = await _context.Users.FindAsync(model.Id);
             Console.WriteLine(model.Id);
-            
+
             if (users != null)
             {
-                users.Name = model.Name;
-                users.UserName = model.UserName;
-                users.Email = model.Email;
-                _context.Update(users);
-                await _context.SaveChangesAsync();
-                status.StatusCode = 1;
+                var userExists = await _userManager.FindByNameAsync(model.UserName);
+                var emailExists = await _userManager.FindByEmailAsync(model.Email);
+                if (userExists == null|| emailExists == null)
+                {
+                    users.Name = model.Name;
+                    users.UserName = model.UserName;
+                    users.Email = model.Email;
+                    _context.Update(users);
+                    await _context.SaveChangesAsync();
+                    status.StatusCode = 1;
+                }
+                //if (userExists != null || emailExists != null)
+                //{
+
+                //}
+                else
+                {
+                    status.StatusCode = 0;
+                }
+
             }
             else
             {
@@ -166,5 +233,16 @@ namespace MHealth.Repositories.Implementation
             return status;
         }
 
+        public async Task<UserViewModel> UserModelToUserViewModel(string id)
+        {
+            UserModel user = await _context.Users.FindAsync(id);
+            return new UserViewModel
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                UserName = user.UserName
+            };
+        }
     }
 }

@@ -30,7 +30,8 @@ builder.Services
     .AddScoped<IAdminRepository, AdminRepository>()
     .AddScoped<IUserRepository, UserRepository>()
     .AddScoped<IBookingRepository, BookingRepository>()
-    .AddScoped<IStaffRepository, StaffRepository>();
+    .AddScoped<IStaffRepository, StaffRepository>()
+    .AddScoped<IEmailRepository, EmailRepository>();
 
 builder.Services.AddSession(options =>
 {
@@ -197,8 +198,8 @@ using (var scope = app.Services.CreateScope())
         var userData = new[]
         {
             new { UserName = "jtandijaya16", Email = "jtandijaya16@gmail.com" },
-            new { UserName = "jehezkiel.ht16", Email = "jehezkiel.ht16@gmail.com"},
-            new { UserName = "nxocrewgm1", Email = "nxocrewgm1@gmail.com" },
+            //new { UserName = "jehezkiel.ht16", Email = "jehezkiel.ht16@gmail.com"},
+            new { UserName = "nxocrewgm1", Email = "nxocrewgm1@gmail.com" }
             // Add more user data as needed
         };
 

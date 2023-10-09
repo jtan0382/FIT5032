@@ -4,10 +4,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MHealth.Models.Domain
 {
-    [NotMapped]
-    public class UserViewModel : IdentityUser
+    //[NotMapped]
+    public class UserViewModel 
     {
-        public int Id { get; set; }
+        public string? Id { get; set; }
         [Required]
         public string? Name { get; set; }
         [Required]
